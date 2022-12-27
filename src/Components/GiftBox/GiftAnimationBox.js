@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import "./style.css";
 
 import box from "../../img/BoxBottom.png";
@@ -20,6 +20,14 @@ const init_state = {
 };
 
 export default function GiftBoxAnimation() {
+
+  useEffect(()=>{
+    document.addEventListener("click",handleClickAway,true)
+  },[])
+
+  const refOne = useRef(null)
+  
+
   const [state, setState] = useReducer(
     (state, new_state) => ({
       ...state,
@@ -28,8 +36,14 @@ export default function GiftBoxAnimation() {
     init_state
   );
 
+  function handleClickAway(e) {
+    if(!refOne.current.contains(e.target)){
+      setState(init_state)
+      console.log('Esta clickeando fuera')
+    }
+  }
+
   const { move, rotating, rotated, jump } = state;
-  const [view, setView] = useState(false)
 
   function animate() {
     let isDone = rotated === "rotated" ? true : false;
@@ -53,7 +67,7 @@ export default function GiftBoxAnimation() {
   const MySwal = withReactContent(Swal);
   function mostrarAlerta() {
     MySwal.fire({
-      title: "Custom width, padding, color, background.",
+      title: Preguntas[0].preguntas,
       width: 600,
       padding: "3em",
       color: "#716add",
@@ -63,14 +77,13 @@ export default function GiftBoxAnimation() {
       left top
       no-repeat
     `,
-    })
-    .then(()=> setView(true));
+    });
   }
 
   return (
     <div className="App">
       {/* <Confetti open={jump === "jump"} /> */}
-      <div className="img-container">
+      <div className="img-container"ref={refOne}>
         {/* <img className={`kuku ${jump}`} src={kuku} alt="kuku" /> */}
         <button className="box" onClick={() => animate()}>
           <img src={box} alt="box" />
