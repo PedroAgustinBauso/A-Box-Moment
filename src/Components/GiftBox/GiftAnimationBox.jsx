@@ -1,23 +1,18 @@
-import React, { useEffect, useReducer, useRef, useState } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 import "./style.css";
 
 import box from "../../img/BoxBottom.png";
 import boxLid from "../../img/boxTop.png";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-
-// import kuku from "./images/jump-character.png";
-// import ConfettiGenerator from "./CanvasConfetti";
-// import Confetti from "./confetti/Confetti";
-
 import Preguntas from "../../Common/Preguntas.json"
 
 const init_state = {
   move: "move",
-  jump: "",
   rotated: "",
   rotating: "",
 };
+
 
 export default function GiftBoxAnimation() {
 
@@ -27,7 +22,6 @@ export default function GiftBoxAnimation() {
 
   const refOne = useRef(null)
   
-
   const [state, setState] = useReducer(
     (state, new_state) => ({
       ...state,
@@ -39,24 +33,24 @@ export default function GiftBoxAnimation() {
   function handleClickAway(e) {
     if(!refOne.current.contains(e.target)){
       setState(init_state)
-      console.log('Esta clickeando fuera')
     }
   }
 
-  const { move, rotating, rotated, jump } = state;
+  const { move, rotating, rotated } = state;
 
   function animate() {
     let isDone = rotated === "rotated" ? true : false;
 
     if (!isDone) {
       setState({ rotating: "rotating" });
-      mostrarAlerta()
+      
       setTimeout(() => {
-        setState({ jump: "jump" });
-      }, 300);
+        mostrarAlerta()
+      }, 100);
+      
       setTimeout(() => {
         setState({ rotated: "rotated" });
-      }, 1000);
+      }, 500);
     } else {
       setState(init_state);
     }
@@ -64,14 +58,19 @@ export default function GiftBoxAnimation() {
     setState({ move: moving });
   }
 
+  
+  
   const MySwal = withReactContent(Swal);
   function mostrarAlerta() {
+    const random = () => Math.floor(Math.random() * Preguntas[0].preguntas.length);
     MySwal.fire({
-      title: Preguntas[0].preguntas,
+      title: Preguntas[0].preguntas[random()],
       width: 600,
       padding: "3em",
       color: "#716add",
       background: "#fff",
+      confirmButtonText:"Ok",
+      // confirmButtonColor:"red",
       backdrop: `
       rgba(0,0,0,0.4)
       left top
@@ -82,17 +81,17 @@ export default function GiftBoxAnimation() {
 
   return (
     <div className="App">
-      {/* <Confetti open={jump === "jump"} /> */}
-      <div className="img-container"ref={refOne}>
-        {/* <img className={`kuku ${jump}`} src={kuku} alt="kuku" /> */}
-        <button className="box" onClick={() => animate()}>
-          <img src={box} alt="box" />
-        </button>
+      <div className="img-container "ref={refOne}>
         <img
           className={`lid ${move} ${rotating} ${rotated}`}
           src={boxLid}
           alt="box-lid"
+          style={{marginBottom:"-4px"}}
         />
+        <button className="box pt-14 items-center" onClick={() => animate()}>
+          <img src={box} alt="box" />
+        </button>
+
       </div>
     </div>
   );
