@@ -6,17 +6,7 @@ import { AiOutlineArrowDown } from "react-icons/ai"
 
 const HomePage = () => {
   return (
-    <div className="h-screen"
-      style={{
-        backgroundImage: `url(${background})`,
-        height: "100vh",
-        width: "100wh",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <div >
       <div className="container">
         <NavBar />
         <div className="flex flex-col items-center">
