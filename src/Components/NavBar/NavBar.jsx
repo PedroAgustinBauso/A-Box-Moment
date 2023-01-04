@@ -39,9 +39,9 @@ const NavBar = () => {
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li>
-              <Link to="/mision" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
-                <h4 className='text-white visible lg:invisible pl-2 leading-relaxed'>Mision</h4>
-              </Link>
+              {pathname === "/mision"? (''):(<Link to="/mision" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                <h4 className='text-white visible lg:invisible pl-2 leading-relaxed text-xl'>Mision</h4>
+              </Link>)}              
               </li>
               <li className="nav-item">
                 <a
