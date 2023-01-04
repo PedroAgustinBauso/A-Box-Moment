@@ -1,9 +1,11 @@
 import React from 'react'
 import { BsLinkedin, BsGithub } from 'react-icons/bs'
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
 
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const pathname = window.location.pathname
 
   return (
     <div>
@@ -11,13 +13,12 @@ const NavBar = () => {
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-transparent mb-3">
         <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
           <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            {/* <a
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-              href=""
-            >
-              Gift you a box
-            </a> */}
-            <h3 className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">Gift you a box</h3>
+            <Link to="/">
+            <h3 className="text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white">Gift you a box</h3>
+            </Link>
+            {pathname === "/mision"? (''):(<Link to="/mision">
+            <h4 className='text-white inline-block invisible lg:visible pl-8 text-xl leading-relaxed'>Misión</h4>
+            </Link>)}           
             <button
               className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"              
               type="button"
@@ -37,6 +38,11 @@ const NavBar = () => {
             id="example-navbar-danger"
           >
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+              <li>
+              <Link to="/mision" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">
+                <h4 className='text-white visible lg:invisible pl-2 leading-relaxed'>Mision</h4>
+              </Link>
+              </li>
               <li className="nav-item">
                 <a
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
