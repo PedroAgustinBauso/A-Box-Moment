@@ -67,10 +67,10 @@ export default function GiftBoxAnimation() {
       title: Preguntas[0].preguntas[random()],
       width: 600,
       padding: "3em",
-      color: "#716add",
+      color: "#C30525",
       background: "#fff",
       confirmButtonText:"Ok",
-      // confirmButtonColor:"red",
+      confirmButtonColor:"#C30525",
       backdrop: `
       rgba(0,0,0,0.4)
       left top
@@ -81,7 +81,7 @@ export default function GiftBoxAnimation() {
 
   return (
     <div className="App">
-      <div className="img-container "ref={refOne}>
+      <div className="img-container"ref={refOne}>
         <img
           className={`lid ${move} ${rotating} ${rotated}`}
           src={boxLid}
