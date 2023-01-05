@@ -5,7 +5,7 @@ import box from "../../img/BoxBottom.png";
 import boxLid from "../../img/boxTop.png";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import Preguntas from "../../Common/Preguntas.json"
+import Preguntas from "../../Data/Preguntas.json"
 
 const init_state = {
   move: "move",
