@@ -6,7 +6,7 @@ const ClickText = () => {
     <div className="wrapper mt-11 mb-5">
       <div className="containerEffect" style={{marginTop:"100px", marginBottom:"200px"}}>
         <h1 className="text-white">
-           Click the Box 
+          Cliquea  La Caja 
         </h1>
       </div>
     </div>
