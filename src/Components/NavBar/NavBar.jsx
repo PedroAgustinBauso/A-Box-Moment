@@ -33,7 +33,7 @@ const NavBar = () => {
           <div
             className={
               "lg:flex flex-grow items-center" +
-              (navbarOpen ? " flex" : " hidden")
+              (navbarOpen ? " flex absolute mt-48" : " hidden")
             }
             id="example-navbar-danger"
           >
